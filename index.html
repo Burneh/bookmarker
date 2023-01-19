@@ -1,3 +1,20 @@
 <html>
-<h1>Page up 1/19/2023</h1>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const hasLoggedIn = window.localStorage.getItem('hasLoggedIn')
+
+    </script>
+<div id="app">{{ message }}</div>
+
+<script>
+  const { createApp } = Vue
+
+  createApp({
+    data() {
+      return {
+        message: 'Hello Vue!'
+      }
+    }
+  }).mount('#app')
+</script>
 </html>
