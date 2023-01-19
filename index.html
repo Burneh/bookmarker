@@ -5,14 +5,14 @@
         const hasLoggedIn = window.localStorage.getItem('hasLoggedIn')
 
     </script>
-<div id="app" class=".container">
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-3">
-            <a href="/bookmarker/redirect.html" class="btn btn-primary">Login</a>
+<div id="app" class="container">
+    <div class="row" style="margin-top: 40px;">
+        <div class="col-4"></div>
+        <div class="d-grid gap-2 col-4">
+            <p>Use our secure site to login</p>
+            <a href="/bookmarker/redirect.html" class="btn btn-primary">Login {{hasLoggedIn ? 'again' : '' }}</a>
         </div>
-    </div>
-    {{ message }}
+    </div>    
 </div>
 
 <script>
@@ -21,11 +21,16 @@
   createApp({
     data() {
       return {
-        message: 'Hello Vue!'
+        message: 'Hello Vue!',
+        hasLoggedIn: false
       }
     },
     mounted() {
-        console.log('mounted')
+        this.message = 'Hello from mounted!'
+        const loggedIn = window.localStorage.getItem('hasLoggedIn');
+        if (loggedIn === 'true') {
+            this.hasLoggedIn = true;
+        }
     }
   }).mount('#app')
 </script>
