@@ -10,7 +10,7 @@
         <div class="col-4"></div>
         <div v-if="!hasLoggedIn" class="d-grid gap-2 col-4">
             <p>Use our secure site to login <span style="color: red">{{isStandalone ? 'Standalone Found' : ''}}</span></p>
-            <a :href="`${host.indexOf('github') >= 0 ? 'bookmarker' : ''}/redirect.html`" class="btn btn-primary">Login {{hasLoggedIn ? 'again' : '' }}</a>
+            <a :href="`${host.indexOf('github') >= 0 ? '/bookmarker' : ''}/redirect.html`" class="btn btn-primary">Login {{hasLoggedIn ? 'again' : '' }}</a>
         </div> 
         <div v-else="!hasLoggedIn" class="d-grid gap-2 col-4">
           <p>Previous login detected...automatically redirecting to login <span style="color: red">{{isStandalone ? 'Standalone Found' : ''}}</span></p>
