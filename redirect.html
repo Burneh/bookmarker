@@ -23,7 +23,10 @@
       }
     },
     mounted() { 
-        window.localStorage.setItem('hasLoggedIn', 'true');      
+        window.localStorage.setItem('hasLoggedIn', 'true');
+        this.host = window.location.host;
+        const loggedIn = window.localStorage.getItem('hasLoggedIn');
+        this.isStandalone = window.navigator.standalone;
     },
     methods: {
         clearStorage (event) {

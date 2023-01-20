@@ -23,10 +23,14 @@
     data() {
       return {
         message: 'Hello Vue!',
-        hasLoggedIn: false
+        hasLoggedIn: false,
+        host: '',
       }
     },
     mounted() {       
+      this.host = window.location.host;
+      const loggedIn = window.localStorage.getItem('hasLoggedIn');
+      this.isStandalone = window.navigator.standalone;
     },
     methods: {
         clearStorage (event) {
