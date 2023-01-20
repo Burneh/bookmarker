@@ -9,11 +9,11 @@
     <div class="row" style="margin-top: 40px;">
         <div class="col-4"></div>
         <div v-if="!hasLoggedIn" class="d-grid gap-2 col-4">
-            <p>Use our secure site to login</p>
-            <a href="/bookmarker/redirect.html" class="btn btn-primary">Login {{hasLoggedIn ? 'again' : '' }}</a>
-        </div>
+            <p>Use our secure site to login <span style="color: red">{{isStandalone ? 'Standalone Found' : ''}}</span></p>
+            <a :href="`${host.indexOf('github') >= 0 ? 'bookmarker' : ''}/redirect.html`" class="btn btn-primary">Login {{hasLoggedIn ? 'again' : '' }}</a>
+        </div> 
         <div v-else="!hasLoggedIn" class="d-grid gap-2 col-4">
-          <p>Previous login detected...automatically redirecting to login</p>
+          <p>Previous login detected...automatically redirecting to login <span style="color: red">{{isStandalone ? 'Standalone Found' : ''}}</span></p>
           <div class="spinner-border" role="status">
             <span class="sr-only"></span>
           </div>
@@ -28,19 +28,21 @@
     data() {
       return {
         message: 'Hello Vue!',
-        hasLoggedIn: false
+        hasLoggedIn: false,
+        host: '',
+        isStandalone: false,
       }
     },
     mounted() {
         this.message = 'Hello from mounted!'
+        this.host = window.location.host;
         const loggedIn = window.localStorage.getItem('hasLoggedIn');
+        this.isStandalone = window.navigator.standalone;
         if (loggedIn === 'true') {
             this.hasLoggedIn = true;
             setTimeout(() => {
               window.location.href = '/bookmarker/auto-login.html';
-            }, 2000)
-            
-            
+            }, 2000)                        
         }        
     }
   }).mount('#app')
