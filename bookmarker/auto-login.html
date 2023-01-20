@@ -9,8 +9,9 @@
     <div class="row" style="margin-top: 40px;">
         <div class="col-4"></div>
         <div class="d-grid gap-2 col-4">
-            <p>Use our secure site to login</p>
-            <a href="/bookmarker/redirect.html" class="btn btn-primary">Login {{hasLoggedIn ? 'again' : '' }}</a>
+            <p>You were logged in previously so you were sent here automatically</p>
+            <button @click="clearStorage" class="btn btn-secondary">Clear Localstorage</button>
+            <a href="/bookmarker/index.html" class="btn btn-primary">Return to login</a>
         </div>
     </div>    
 </div>
@@ -25,11 +26,11 @@
         hasLoggedIn: false
       }
     },
-    mounted() {
-        this.message = 'Hello from mounted!'
-        const loggedIn = window.localStorage.getItem('hasLoggedIn');
-        if (loggedIn === 'true') {
-            this.hasLoggedIn = true;
+    mounted() {       
+    },
+    methods: {
+        clearStorage (event) {
+            window.localStorage.clear();
         }
     }
   }).mount('#app')
